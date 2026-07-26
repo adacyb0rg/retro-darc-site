@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retro-DARC — Function-Preserving Residual-Memory Adapters</title>
+<meta name="description" content="Retro-DARC turns a pretrained model's own layer deltas into typed, queryable, causally auditable memory — inserted as an exact no-op, verified bitwise on public checkpoints.">
+<style>
+:root {
+  --ink: #16181d; --muted: #5a5f6b; --faint: #9aa0ab;
+  --paper: #ffffff; --wash: #f6f6f3; --line: #e4e4df;
+  --blue: #3565e0; --orange: #c24e0a; --purple: #8446d6; --green: #1f8a4c;
+  --code-bg: #f4f4f1; --code-line: #e0e0da;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e8e8e4; --muted: #a2a7b0; --faint: #6e747e;
+    --paper: #131417; --wash: #1a1c20; --line: #2a2d33;
+    --blue: #7d9cf0; --orange: #e08b52; --purple: #b088e8; --green: #5cb885;
+    --code-bg: #1c1e23; --code-line: #2c2f36;
+  }
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: Charter, Georgia, 'Times New Roman', serif;
+  color: var(--ink); background: var(--paper);
+  line-height: 1.55; font-size: 17px;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 22px; }
+.eyebrow {
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted);
+}
+header.hero { text-align: center; padding: 72px 0 30px; }
+h1.title {
+  font-size: clamp(28px, 4.6vw, 42px); line-height: 1.16;
+  text-wrap: balance; margin: 14px 0 10px; letter-spacing: -0.012em;
+}
+.subtitle { font-size: 19px; color: var(--muted); font-style: italic; text-wrap: balance; }
+.byline { margin-top: 16px; font-size: 17px; }
+.byline .affil { color: var(--muted); font-size: 15px; }
+.btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 26px 0 8px; }
+.btn {
+  font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14.5px; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 17px; border-radius: 999px; text-decoration: none;
+  border: 1.2px solid var(--ink); color: var(--ink); background: transparent;
+  transition: background .15s, color .15s;
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn.primary { background: var(--ink); color: var(--paper); }
+.btn.primary:hover { background: var(--blue); border-color: var(--blue); }
+.btn svg { width: 15px; height: 15px; fill: currentColor; }
+section { padding: 34px 0; }
+section + section { border-top: 1px solid var(--line); }
+h2.sec { font-size: 24px; margin-bottom: 16px; letter-spacing: -0.01em; }
+p.lede { font-size: 17.5px; }
+p + p { margin-top: 12px; }
+strong { font-weight: 700; }
+figure.arch { margin: 26px 0 4px; text-align: center; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+figure.arch img { max-width: 100%; height: auto; }
+figure.arch figcaption { font-size: 14px; color: var(--muted); text-align: left; margin-top: 10px; line-height: 1.45; }
+.statgrid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px; margin-top: 20px;
+}
+.stat { background: var(--wash); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+.stat .v {
+  font-size: 27px; font-weight: 700; letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+.stat .v.blue { color: var(--blue); } .stat .v.orange { color: var(--orange); }
+.stat .v.purple { color: var(--purple); } .stat .v.green { color: var(--green); }
+.stat .k {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 13px; color: var(--muted); margin-top: 5px; line-height: 1.4;
+}
+.figgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 30px; margin-top: 8px; }
+.figgrid figure { margin: 0; }
+.figgrid img { width: 100%; height: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+.figgrid figcaption { font-size: 14px; color: var(--muted); margin-top: 10px; line-height: 1.45; }
+@media (max-width: 700px) { .figgrid { grid-template-columns: 1fr; } }
+pre {
+  background: var(--code-bg); border: 1px solid var(--code-line); border-radius: 10px;
+  padding: 16px 18px; overflow-x: auto; margin: 14px 0;
+  font-size: 13.5px; line-height: 1.55;
+}
+code { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; }
+p code, li code { background: var(--code-bg); border: 1px solid var(--code-line); border-radius: 4px; padding: 1px 5px; font-size: 14px; }
+.cmt { color: var(--muted); }
+.dl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin-top: 18px; }
+.dl {
+  display: block; text-decoration: none; color: var(--ink);
+  background: var(--wash); border: 1px solid var(--line); border-radius: 10px;
+  padding: 16px 18px; transition: border-color .15s;
+}
+.dl:hover { border-color: var(--blue); }
+.dl .t { font-weight: 700; font-size: 16.5px; }
+.dl .t .arrow { color: var(--blue); }
+.dl .d { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.45; }
+.toc { columns: 2; column-gap: 40px; margin-top: 14px; font-size: 15.5px; }
+@media (max-width: 700px) { .toc { columns: 1; } }
+.toc a {
+  display: flex; align-items: baseline; gap: 6px;
+  color: var(--ink); text-decoration: none; padding: 3.2px 0;
+  break-inside: avoid;
+}
+.toc a:hover .tt { color: var(--blue); }
+.toc .tt { min-width: 0; }
+.toc .dots { flex: 1; border-bottom: 1px dotted var(--faint); transform: translateY(-4px); min-width: 14px; }
+.toc .pg { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 14px; }
+.callout {
+  border-left: 3px solid var(--orange); background: var(--wash);
+  padding: 14px 18px; border-radius: 0 10px 10px 0; margin-top: 16px;
+}
+.callout .h { font-weight: 700; }
+ul.rules { margin: 12px 0 0 22px; }
+ul.rules li { margin: 6px 0; }
+.demo-card {
+  display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline;
+  background: var(--wash); border: 1px solid var(--line); border-radius: 10px;
+  padding: 16px 18px; margin-top: 14px;
+}
+footer { padding: 34px 0 60px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14.5px; }
+footer a, section a { color: var(--blue); }
+.bibtex { user-select: all; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Measured on public checkpoints · replicated across accelerators · July 2026</div>
+  <h1 class="title">Retro-DARC: Function-Preserving Residual-Memory Adapters for Pretrained Language and World Models</h1>
+  <p class="subtitle">Queryable residual evidence for planners — from layer deltas to traces, latent actions, and physics residuals</p>
+  <p class="byline">Ada Cyborg<br><span class="affil">Independent · <a href="https://github.com/adacyb0rg/retro-darc" style="color:inherit">github.com/adacyb0rg/retro-darc</a></span></p>
+  <div class="btns">
+    <a class="btn primary" href="Retro-DARC.pdf">
+      <svg viewBox="0 0 16 16"><path d="M4 0h5l4 4v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1zm5 1v3h3L9 1z"/></svg>
+      Paper (29 pp)</a>
+    <a class="btn" href="Retro-DARC_litepaper.pdf">
+      <svg viewBox="0 0 16 16"><path d="M4 0h5l4 4v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1z"/></svg>
+      Litepaper (8 pp)</a>
+    <a class="btn" href="https://github.com/adacyb0rg/retro-darc">
+      <svg viewBox="0 0 16 16"><path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.5c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.87 2.34.67.07-.52.28-.88.5-1.08-1.77-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.66 7.66 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0z"/></svg>
+      Code &amp; raw JSONs</a>
+    <a class="btn" href="https://lucidre.am/memory">
+      <svg viewBox="0 0 16 16"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 1.5c.9 1.2 1.6 2.7 1.8 4.5H6.2C6.4 5.2 7.1 3.7 8 2.5zM4.7 7A11 11 0 0 1 6 3a5.5 5.5 0 0 0-3.2 4h1.9zm0 2H2.8A5.5 5.5 0 0 0 6 13a11 11 0 0 1-1.3-4zm1.5 0h3.6c-.2 1.8-.9 3.3-1.8 4.5-.9-1.2-1.6-2.7-1.8-4.5zm5.1 0a11 11 0 0 1-1.3 4 5.5 5.5 0 0 0 3.2-4h-1.9zm0-2h1.9A5.5 5.5 0 0 0 10 3a11 11 0 0 1 1.3 4z"/></svg>
+      Live demo</a>
+    <a class="btn" href="retro-darc-adapter-kit.zip" download>
+      <svg viewBox="0 0 16 16"><path d="M8 1v8.3L5.2 6.5 4 7.7l4 4 4-4-1.2-1.2L8 9.3V1zM2 13h12v2H2z"/></svg>
+      Adapter kit (2 MB)</a>
+  </div>
+</header>
+
+<section>
+  <h2 class="sec">Abstract</h2>
+  <p class="lede">Standard pretrained Transformers accumulate depth uniformly: every layer's update enters the residual stream with coefficient one, and the stream goes unqueried. <strong>Retro-DARC</strong> is a family of function-preserving adapters that turns a model's own layer-to-layer updates — its <em>innovations</em>, in the filtering-theory sense — into typed, queryable, causally auditable memory. The adoption core, <strong>Retro-DARC-Lite</strong>, inserts into an existing causal LM as an <strong>exact no-op</strong>: a zero-gated, null-reserving read over recent layer deltas that provably preserves the model's function at insertion and trains gate-first.</p>
+  <p>The design is grounded in a measured, replicated record on public pretrained checkpoints: bitwise logit identity at insertion on three open models; delta-key addressing that stays near ceiling under noise and int4-style corruption while output-key addressing collapses with depth; a registered twin pretrain whose from-scratch failure was diagnosed to gate-initialization shock by factorial ablation; and, at matched parameters on a converged public checkpoint, depth reads that beat LoRA while supporting an audit weight-touching adapters cannot express by construction. Four registered predictions failed and are printed beside their diagnoses.</p>
+
+  <figure class="arch">
+    <img src="figures/fig_architecture.svg" alt="The Retro-DARC-Lite read path: frozen pretrained block, layer update delta, depth bank with normalized keys, token-conditioned query, Top-k Softmax1 read, zero-gated write.">
+    <figcaption><strong>The Retro-DARC-Lite read path.</strong> The base block stays frozen; recent layer updates are stored as full-width values and addressed through low-rank, per-slot normalized keys. The read returns through a scalar gate initialized at zero, so insertion is exact identity — and because memory content is an explicit runtime object, it can be zeroed, shuffled, or replaced without touching any learned weight.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2 class="sec">The measured record</h2>
+  <p>Every number below comes from released code with machine-audited raw outputs (per-run JSONs in the repository); models are gpt2, pythia-410m/1.4b, and Qwen2.5-0.5B/1.5B on an Apple M5 Max, with a DGX Spark (CUDA) replication node.</p>
+  <div class="statgrid">
+    <div class="stat"><div class="v blue">0.0</div><div class="k">max abs logit deviation at insertion — bitwise identity on 3 models × 8 prompts; hooks detach back to the base bitwise (E10.1)</div></div>
+    <div class="stat"><div class="v purple">0.86–0.99</div><div class="k">delta-key top-1 retrieval under key noise + int4-style corruption, vs 0.04–0.75 for output keys, 5 models (E13b; one disclosed exception)</div></div>
+    <div class="stat"><div class="v green">3.0–3.7</div><div class="k">full-stack key condition number with per-slot ℓ2 normalization, 5/5 models — the measured design rule that cured the top-of-stack anomaly (E13)</div></div>
+    <div class="stat"><div class="v blue">beats LoRA</div><div class="k">both depth reads at matched ~262k trainable params on frozen pythia-410m: 2.9655 / 2.9764 vs 2.9907 CE, same ordering on 3/3 seeds (E12)</div></div>
+    <div class="stat"><div class="v green">16 / 16</div><div class="k">zeroing the memory bank returns the frozen loss bit-exactly in every CPU/MPS test (≤1×10⁻⁷ on CUDA) — the machine-checkable integrity audit (E9–E15)</div></div>
+    <div class="stat"><div class="v orange">4 failed</div><div class="k">registered predictions falsified and printed verbatim beside their diagnoses — two produced the design rules below (falsification-first record)</div></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec">Results at a glance</h2>
+  <div class="figgrid">
+    <figure>
+      <img src="figures/fig_conditioning.svg" alt="Conditioning vs depth and the normalization cure">
+      <figcaption>Output-key condition numbers grow with bank size; interior delta keys stay flat. Per-slot ℓ2 normalization repairs the full stack on all five models.</figcaption>
+    </figure>
+    <figure>
+      <img src="figures/fig_retrieval.svg" alt="Retrieval under key corruption">
+      <figcaption>Top-1 retrieval under noise and simulated int4: delta keys hold near ceiling while output keys collapse with depth.</figcaption>
+    </figure>
+    <figure>
+      <img src="figures/fig_twin.svg" alt="The from-scratch factorial">
+      <figcaption>The twin-pretrain factorial: building the read in at full initial gate hurts on every seed — pure initialization shock; zero-init recovers to parity.</figcaption>
+    </figure>
+    <figure>
+      <img src="figures/fig_interventions.svg" alt="The causal audit">
+      <figcaption>The causal audit: zeroing returns the frozen loss; shuffling removes 70–107% of the gain; same-norm random lands worse than frozen.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec">Use the adapter</h2>
+  <p>The adapter is one file (<code>depth_adapter.py</code>, no project-specific dependencies) plus <code>torch</code> and <code>transformers</code>. It attaches to GPT-2, GPT-NeoX, and Qwen2 blocks via forward pre-hooks — no modeling-code changes — and at gate γ=0 your model's outputs are <strong>bitwise identical</strong> to the base. Detach restores the base exactly.</p>
+<pre><code><span class="cmt"># pip install "git+https://github.com/adacyb0rg/retro-darc"</span>
+<span class="cmt"># or download the adapter kit above (module + trained checkpoints + guide)</span>
+
+from transformers import AutoModelForCausalLM
+from depth_adapter import DepthReadAdapter, HookedDepthAdapter, get_blocks, MODEL_TABLE
+
+model_id = "EleutherAI/pythia-410m"
+model = AutoModelForCausalLM.from_pretrained(model_id)
+cfg = MODEL_TABLE[model_id]
+
+adapter = DepthReadAdapter(d=cfg["d"], ins=2 * cfg["layers"] // 3,
+                           key_mode="delta", null=True)
+hooked = HookedDepthAdapter(get_blocks(model, model_id), adapter)
+hooked.attach()          <span class="cmt"># γ = 0 → exact no-op (assert-verified in the kit guide)</span>
+
+<span class="cmt"># train adapter.parameters() only (4·64·d + 65 params), then audit:</span>
+adapter.intervention = "zero"     <span class="cmt"># frozen loss returns EXACTLY</span>
+adapter.intervention = "shuffle"  <span class="cmt"># removes 70–107% of the gain</span>
+hooked.detach()          <span class="cmt"># base model restored bitwise</span></code></pre>
+
+  <div class="dl-grid">
+    <a class="dl" href="retro-darc-adapter-kit.zip" download>
+      <div class="t">Adapter kit <span class="arrow">↓</span></div>
+      <div class="d">depth_adapter.py + trained pythia-410m checkpoints (RD-Lite &amp; AttnRes-style heads, seed 0) + quickstart guide. 2 MB.</div>
+    </a>
+    <a class="dl" href="https://github.com/adacyb0rg/retro-darc">
+      <div class="t">Full repository <span class="arrow">→</span></div>
+      <div class="d">Paper source, all task scripts, raw per-run JSONs, both seeds' checkpoints, replication runbook, pinned environment.</div>
+    </a>
+    <a class="dl" href="quickstart.html">
+      <div class="t">Quickstart guide <span class="arrow">→</span></div>
+      <div class="d">Attach → verify identity → train → run the three-intervention causal audit. Includes the two measured design rules.</div>
+    </a>
+  </div>
+
+  <div class="callout">
+    <span class="h">Two measured design rules</span> (each from a falsified registered prediction):
+    <ul class="rules">
+      <li><strong>ℓ2-normalize each delta before the key projection</strong> — raw keys are ill-conditioned near the top of the stack; normalization holds full-bank κ at 3.0–3.7 on all five models tested (E13).</li>
+      <li><strong>Initialize every gate at zero, including from-scratch builds</strong> — γ₀=1 cost +0.0142 CE on 3/3 seeds; the deficit is pure initialization shock (E14).</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec">Live demo — lucidre.am, the world that remembers</h2>
+  <p>A deployed miniature of the paper's memory contract runs inside <a href="https://lucidre.am/memory">lucidre.am/memory</a> — walkable AI-generated worlds (World Labs Marble) with the paper's mechanisms as the persistence layer:</p>
+  <div class="dl-grid">
+    <a class="dl" href="https://lucidre.am/memory">
+      <div class="t">Innovation memory <span class="arrow">→</span></div>
+      <div class="d">Your interactions become innovation records — keyed, Softmax1-routed, re-read on your next visit through a zero-gated redream. The paper's zero / shuffle / same-norm interventions are available live: persistence you can switch off and audit, in the browser.</div>
+    </a>
+    <a class="dl" href="https://lucidre.am/memory">
+      <div class="t">Dream residue — trace memory <span class="arrow">→</span></div>
+      <div class="d">A visitor's camera path is a literal innovation trace — motion deltas over the world (X-Trace, paper §7). The demo banks it and renders faint glowing trails where you walked on revisit. Aggregated traces are a free attention heatmap per world.</div>
+    </a>
+  </div>
+
+  <p style="margin-top:22px"><strong>Roadmap — the platform as the paper's deployment surface.</strong> Each next feature is a paper mechanism deployed:</p>
+  <ol style="margin: 10px 0 0 22px; font-size: 16px;">
+    <li style="margin:7px 0"><strong>Shared persistent worlds</strong> (§13.2(7) belief-state design) — move the bank server-side and worlds remember <em>everyone</em>. The paper's keying gives attribution for free: each innovation carries its author's context key, so "whose edit is this" is queryable, and per-visitor γ gates let a visitor view the pristine world, their own layer, or the communal dream — worlds with history, not just geometry.</li>
+    <li style="margin:7px 0"><strong>Saliency-weighted curation</strong> (Residual-Aligned retention, §6) — budget follows evidence: rank community worlds by how much they differ from the platform's prior, and pick thumbnails at the most surprising viewpoint. The paper measured exactly this pattern winning (E6: saliency-weighted pooling 0.883 vs 0.758 uniform).</li>
+    <li style="margin:7px 0"><strong>The null route as recommender honesty</strong> (Softmax1, §5) — when the "show this world next" score is weak, abstain rather than pad. A recommender with a calibrated null option.</li>
+    <li style="margin:7px 0"><strong>Session chunks → dream journals</strong> (§7.4 delta chunks) — compress a visit into a few salient chunks ("entered at dusk · lingered at the tower"): shareable visit summaries that are the paper's chunk-summary mechanism deployed.</li>
+    <li style="margin:7px 0"><strong>Ship-dark as platform practice</strong> (§5.1 zero-gate pattern) — every new experiential layer ships behind a γ=0-style gate that provably changes nothing until enabled per-user, and the audit becomes moderation tooling: view any world with visitor memory zeroed, or one memory type ablated (§11.1's per-type interventions as an admin UI).</li>
+    <li style="margin:7px 0"><strong>The long game</strong> — when the §13.2(7) experiments run (a real learned world model with retrofit memory), lucidre.am is the natural deployment surface: the MemoBench-style object-permanence demo can live on the platform, making the site the living demo of the research program.</li>
+  </ol>
+</section>
+
+<section>
+  <h2 class="sec">The full report</h2>
+  <p>The paper is a 29-page technical report plus staged validation program (theory, typed world-model interface, verification plan, and a revision record of every corrected and falsified claim). Links open the PDF at each section:</p>
+  <nav class="toc">
+    <a href="Retro-DARC.pdf#page=1"><span class="tt">Abstract</span><span class="dots"></span><span class="pg">1</span></a>
+    <a href="Retro-DARC.pdf#page=1"><span class="tt">1. Introduction</span><span class="dots"></span><span class="pg">1</span></a>
+    <a href="Retro-DARC.pdf#page=3"><span class="tt">2. Positioning: the 2026 world-model landscape</span><span class="dots"></span><span class="pg">3</span></a>
+    <a href="Retro-DARC.pdf#page=5"><span class="tt">3. Related work &amp; the near-empty quadrant</span><span class="dots"></span><span class="pg">5</span></a>
+    <a href="Retro-DARC.pdf#page=7"><span class="tt">4. Problem setting and design requirements</span><span class="dots"></span><span class="pg">7</span></a>
+    <a href="Retro-DARC.pdf#page=8"><span class="tt">5. Retro-DARC-Lite: the adoptable core</span><span class="dots"></span><span class="pg">8</span></a>
+    <a href="Retro-DARC.pdf#page=10"><span class="tt">6. Residual-aligned routing &amp; the evidence principle</span><span class="dots"></span><span class="pg">10</span></a>
+    <a href="Retro-DARC.pdf#page=11"><span class="tt">7. Retro-DARC-X: typed memory for planners</span><span class="dots"></span><span class="pg">11</span></a>
+    <a href="Retro-DARC.pdf#page=12"><span class="tt">8. Composability with recurrent depth</span><span class="dots"></span><span class="pg">12</span></a>
+    <a href="Retro-DARC.pdf#page=12"><span class="tt">9. Theoretical properties</span><span class="dots"></span><span class="pg">12</span></a>
+    <a href="Retro-DARC.pdf#page=14"><span class="tt">10. Executable mechanism checks (E1–E15)</span><span class="dots"></span><span class="pg">14</span></a>
+    <a href="Retro-DARC.pdf#page=20"><span class="tt">11. Verification plan: stage by stage</span><span class="dots"></span><span class="pg">20</span></a>
+    <a href="Retro-DARC.pdf#page=22"><span class="tt">12. Systems and complexity</span><span class="dots"></span><span class="pg">22</span></a>
+    <a href="Retro-DARC.pdf#page=23"><span class="tt">13. Mechanism disambiguation</span><span class="dots"></span><span class="pg">23</span></a>
+    <a href="Retro-DARC.pdf#page=25"><span class="tt">14. Discussion, limitations, honest status</span><span class="dots"></span><span class="pg">25</span></a>
+    <a href="Retro-DARC.pdf#page=26"><span class="tt">15. Conclusion</span><span class="dots"></span><span class="pg">26</span></a>
+    <a href="Retro-DARC.pdf#page=26"><span class="tt">Appendix A–C. Forward pass · config · ablations</span><span class="dots"></span><span class="pg">26</span></a>
+    <a href="Retro-DARC.pdf#page=27"><span class="tt">Appendix D. Revision record (every falsified claim)</span><span class="dots"></span><span class="pg">27</span></a>
+    <a href="Retro-DARC.pdf#page=27"><span class="tt">References</span><span class="dots"></span><span class="pg">27</span></a>
+  </nav>
+</section>
+
+<section>
+  <h2 class="sec">Citation</h2>
+<pre class="bibtex"><code>@misc{cyborg2026retrodarc,
+  title  = {Retro-DARC: Function-Preserving Residual-Memory Adapters
+            for Pretrained Language and World Models},
+  author = {Cyborg, Ada},
+  year   = {2026},
+  month  = {July},
+  url    = {https://github.com/adacyb0rg/retro-darc},
+  note   = {Technical report; arXiv submission pending}
+}</code></pre>
+</section>
+
+<footer>
+  <p>Preregistration-style program: predictions and baselines were committed to the public repository before the runs that tested them; four registered predictions failed and are reported verbatim. Raw outputs, harness, per-run records, and the externally timestamped history live in the <a href="https://github.com/adacyb0rg/retro-darc">released repository</a>.</p>
+  <p style="margin-top:10px">Ada Cyborg · July 2026 · CC BY 4.0 <span id="arxiv-slot"><!-- arXiv link goes here once the ID is issued --></span></p>
+</footer>
+
+</div>
+</body>
+</html>

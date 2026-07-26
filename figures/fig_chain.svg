@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="475.2pt" height="122.4pt" viewBox="0 0 475.2 122.4" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-07-26T15:05:00.806206</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.4, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 122.4 
+L 475.2 122.4 
+L 475.2 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 18.091809 100.9332 
+L 114.684115 100.9332 
+Q 118.600019 100.9332 118.600019 96.3486 
+L 118.600019 26.0514 
+Q 118.600019 21.4668 114.684115 21.4668 
+L 18.091809 21.4668 
+Q 14.175904 21.4668 14.175904 26.0514 
+L 14.175904 96.3486 
+Q 14.175904 100.9332 18.091809 100.9332 
+z
+" clip-path="url(#p32ea5ba69e)" style="fill: #ffffff; stroke: #1f8a4c; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 127.737129 100.9332 
+L 224.329435 100.9332 
+Q 228.24534 100.9332 228.24534 96.3486 
+L 228.24534 26.0514 
+Q 228.24534 21.4668 224.329435 21.4668 
+L 127.737129 21.4668 
+Q 123.821225 21.4668 123.821225 26.0514 
+L 123.821225 96.3486 
+Q 123.821225 100.9332 127.737129 100.9332 
+z
+" clip-path="url(#p32ea5ba69e)" style="fill: #ffffff; stroke: #8446d6; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 237.38245 100.9332 
+L 333.974756 100.9332 
+Q 337.89066 100.9332 337.89066 96.3486 
+L 337.89066 26.0514 
+Q 337.89066 21.4668 333.974756 21.4668 
+L 237.38245 21.4668 
+Q 233.466545 21.4668 233.466545 26.0514 
+L 233.466545 96.3486 
+Q 233.466545 100.9332 237.38245 100.9332 
+z
+" clip-path="url(#p32ea5ba69e)" style="fill: #ffffff; stroke: #c24e0a; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 347.02777 100.9332 
+L 443.620077 100.9332 
+Q 447.535981 100.9332 447.535981 96.3486 
+L 447.535981 26.0514 
+Q 447.535981 21.4668 443.620077 21.4668 
+L 347.02777 21.4668 
+Q 343.111866 21.4668 343.111866 26.0514 
+L 343.111866 96.3486 
+Q 343.111866 100.9332 347.02777 100.9332 
+z
+" clip-path="url(#p32ea5ba69e)" style="fill: #ffffff; stroke: #3565e0; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #1f8a4c; font: 700 8.6px 'STIX Two Text', 'Georgia', serif; text-anchor: middle" x="66.387962" y="41.8428" transform="rotate(-0 66.387962 41.8428)">E10.1</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #1b2430; font: 7.6px 'STIX Two Text', 'Georgia', serif" transform="translate(48.508962 64.29665)">insertion is</text>
+    <text style="fill: #1b2430; font: 7.6px 'STIX Two Text', 'Georgia', serif" transform="translate(47.899774 72.4068)">bitwise free</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #8446d6; font: 700 8.6px 'STIX Two Text', 'Georgia', serif; text-anchor: middle" x="176.033282" y="41.8428" transform="rotate(-0 176.033282 41.8428)">E10.2 · E13 · E13b</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #1b2430; font: 7.6px 'STIX Two Text', 'Georgia', serif" transform="translate(140.547814 64.118525)">delta addressing wins;</text>
+    <text style="fill: #1b2430; font: 7.6px 'STIX Two Text', 'Georgia', serif" transform="translate(140.722376 72.4068)">failure mapped, cured</text>
+   </g>
+   <g id="patch_6">
+    <path d="M 118.860909 61.2 
+Q 122.081971 61.2 123.961392 61.2 
+" clip-path="url(#p32ea5ba69e)" style="fill: none; stroke: #5b6570; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 119.561392 59 
+L 123.961392 61.2 
+L 119.561392 63.4 
+z
+" clip-path="url(#p32ea5ba69e)" style="fill: #5b6570; stroke: #5b6570; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_5">
+    <text style="fill: #c24e0a; font: 700 8.6px 'STIX Two Text', 'Georgia', serif; text-anchor: middle" x="285.678603" y="41.8428" transform="rotate(-0 285.678603 41.8428)">E11 · E14</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #1b2430; font: 7.6px 'STIX Two Text', 'Georgia', serif" transform="translate(247.496322 64.29665)">retrofit &gt; naive built-in;</text>
+    <text style="fill: #1b2430; font: 7.6px 'STIX Two Text', 'Georgia', serif" transform="translate(259.134415 72.4068)">shock diagnosed</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 228.50623 61.2 
+Q 231.727292 61.2 233.606713 61.2 
+" clip-path="url(#p32ea5ba69e)" style="fill: none; stroke: #5b6570; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 229.206713 59 
+L 233.606713 61.2 
+L 229.206713 63.4 
+z
+" clip-path="url(#p32ea5ba69e)" style="fill: #5b6570; stroke: #5b6570; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="fill: #3565e0; font: 700 8.6px 'STIX Two Text', 'Georgia', serif; text-anchor: middle" x="395.323923" y="41.8428" transform="rotate(-0 395.323923 41.8428)">E12 · E15</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #1b2430; font: 7.6px 'STIX Two Text', 'Georgia', serif" transform="translate(361.867298 64.29665)">beats LoRA; audited;</text>
+    <text style="fill: #1b2430; font: 7.6px 'STIX Two Text', 'Georgia', serif" transform="translate(357.749048 72.4068)">replicated ×2 machines</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 338.151551 61.2 
+Q 341.372612 61.2 343.252034 61.2 
+" clip-path="url(#p32ea5ba69e)" style="fill: none; stroke: #5b6570; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 338.852034 59 
+L 343.252034 61.2 
+L 338.852034 63.4 
+z
+" clip-path="url(#p32ea5ba69e)" style="fill: #5b6570; stroke: #5b6570; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p32ea5ba69e">
+   <rect x="10.26" y="10.26" width="454.68" height="101.88"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Retro-DARC adapter quickstart</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <style>
+body{max-width:820px;margin:40px auto;padding:0 20px}
+@page { size: A4; margin: 24mm 21mm; }
+body { font-family: "STIX Two Text", Charter, Georgia, serif; font-size: 10.8pt;
+  line-height: 1.38; color: #111; margin: 0; text-align: justify; hyphens: auto; }
+h1 { font-size: 17.5pt; line-height: 1.18; margin: 0 0 7pt; text-align: left; letter-spacing: -0.01em; }
+h2 { font-size: 12.5pt; margin: 17pt 0 6pt; text-align: left; }
+h3 { font-size: 11pt; margin: 12pt 0 4pt; text-align: left; font-style: italic; font-weight: 600; }
+p { margin: 5pt 0; }
+blockquote { border-left: 2pt solid #555; margin: 7pt 0; padding: 2pt 0 2pt 11pt; font-style: italic; text-align: justify; }
+table { border-collapse: collapse; font-size: 8pt; margin: 9pt 0; width: 100%; line-height: 1.25; }
+th, td { border-top: .5pt solid #999; border-bottom: .5pt solid #999; padding: 3pt 5pt; text-align: left; vertical-align: top; }
+th { border-top: 1pt solid #333; border-bottom: .7pt solid #333; background: none; font-weight: 600; }
+tr:last-child td { border-bottom: 1pt solid #333; }
+code { font-family: "SF Mono", Menlo, monospace; font-size: 8.6pt; }
+pre { background: #f7f7f5; border: .5pt solid #ccc; padding: 6pt; font-size: 8.2pt; white-space: pre-wrap; text-align: left; }
+figure { margin: 11pt 0; text-align: center; page-break-inside: avoid; }
+figure img { max-width: 100%; }
+figcaption { font-size: 8.6pt; color: #444; text-align: justify; margin-top: 4pt; line-height: 1.3; }
+tr, li, figure { page-break-inside: avoid; }
+h2, h3 { page-break-after: avoid; }
+mjx-container { font-size: 100% !important; }
+
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Retro-DARC adapter quickstart</h1>
+</header>
+<h1 id="retro-darc-lite-adapter--quickstart">Retro-DARC-Lite adapter —
+quickstart</h1>
+<p>Function-preserving depth-memory read for pretrained causal LMs. At
+gate γ=0 (the initialization) the model's outputs are <strong>bitwise
+identical</strong> to the base model — verified on gpt2, pythia-410m,
+and Qwen2.5-0.5B (paper §10, E10.1). Detaching the hooks restores the
+base exactly.</p>
+<h2 id="install">Install</h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install torch transformers</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plus this file: depth_adapter.py (no other project code needed)</span></span></code></pre></div>
+<p>Or install the module straight from the repository:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="st">&quot;git+https://github.com/adacyb0rg/retro-darc&quot;</span></span></code></pre></div>
+<h2 id="attach-to-a-pretrained-model-exact-no-op-at-insertion">Attach to
+a pretrained model (exact no-op at insertion)</h2>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoModelForCausalLM, AutoTokenizer</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> depth_adapter <span class="im">import</span> DepthReadAdapter, HookedDepthAdapter, get_blocks, MODEL_TABLE</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>model_id <span class="op">=</span> <span class="st">&quot;EleutherAI/pythia-410m&quot;</span>        <span class="co"># or gpt2 / Qwen2.5-0.5B / ... (see MODEL_TABLE)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(model_id, torch_dtype<span class="op">=</span>torch.float32)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>cfg <span class="op">=</span> MODEL_TABLE[model_id]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>ins <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> cfg[<span class="st">&quot;layers&quot;</span>] <span class="op">//</span> <span class="dv">3</span>               <span class="co"># insertion depth INS = 2L/3 (the paper&#39;s default)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>adapter <span class="op">=</span> DepthReadAdapter(d<span class="op">=</span>cfg[<span class="st">&quot;d&quot;</span>], ins<span class="op">=</span>ins, key_mode<span class="op">=</span><span class="st">&quot;delta&quot;</span>, null<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>hooked <span class="op">=</span> HookedDepthAdapter(get_blocks(model, model_id), adapter)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>tok <span class="op">=</span> AutoTokenizer.from_pretrained(model_id)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> tok(<span class="st">&quot;The capital of France is&quot;</span>, return_tensors<span class="op">=</span><span class="st">&quot;pt&quot;</span>).input_ids</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> model(x).logits                     <span class="co"># before insertion</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>hooked.attach()                            <span class="co"># γ = 0 → exact identity</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>after <span class="op">=</span> model(x).logits</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> torch.equal(base, after)            <span class="co"># bitwise, float32 CPU</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>hooked.detach()                            <span class="co"># removes the hooks; base restored bitwise</span></span></code></pre></div>
+<h2 id="train-adapter-only-the-base-stays-frozen">Train (adapter-only;
+the base stays frozen)</h2>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>hooked.attach()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> model.parameters():</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    p.requires_grad_(<span class="va">False</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> torch.optim.AdamW(adapter.parameters(), lr<span class="op">=</span><span class="fl">1e-3</span>)   <span class="co"># 4·64·d + 65 trainable params</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ... standard LM loss over your continued-training tokens ...</span></span></code></pre></div>
+<p>The gate trains first (Prop. 2′): at step 0 only ∇γ is nonzero;
+everything else follows once γ moves. Measured reference runs (frozen
+pythia-410m, wikitext-103, matched ~262k params): see paper §10 rows
+E12/E15.</p>
+<h2
+id="the-causal-audit-what-weight-touching-adapters-cannot-express">The
+causal audit (what weight-touching adapters cannot express)</h2>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>adapter.intervention <span class="op">=</span> <span class="st">&quot;zero&quot;</span>              <span class="co"># bank zeroed -&gt; frozen loss returns EXACTLY</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>adapter.intervention <span class="op">=</span> <span class="st">&quot;shuffle&quot;</span>           <span class="co"># content shuffled -&gt; removes 70-107% of the gain</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>adapter.intervention <span class="op">=</span> <span class="st">&quot;randn_same_norm&quot;</span>   <span class="co"># same-norm noise -&gt; lands WORSE than frozen</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>adapter.intervention <span class="op">=</span> <span class="va">None</span>                <span class="co"># back to normal reads</span></span></code></pre></div>
+<p>Zeroing the bank returned the frozen loss bit-exactly in all 16
+CPU/MPS tests across the paper's runs and to ≤1×10⁻⁷ on CUDA (kernel
+reduction-order noise). Run this battery on your own model before
+trusting any gain.</p>
+<h2 id="pretrained-adapter-checkpoints-this-kit">Pretrained adapter
+checkpoints (this kit)</h2>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>head</th>
+<th>trained on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pythia-410m_rd_lite_seed0.pt</code></td>
+<td>RD-Lite (delta keys + Softmax1 null)</td>
+<td>frozen pythia-410m, wikitext-103, seed 0</td>
+</tr>
+<tr>
+<td><code>pythia-410m_attnres_style_seed0.pt</code></td>
+<td>AttnRes-style (output keys + softmax)</td>
+<td>same run, same budget</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>adapter.load_state_dict(torch.load(<span class="st">&quot;pythia-410m_rd_lite_seed0.pt&quot;</span>))</span></code></pre></div>
+<p>(They are plain <code>state_dict</code>s for the
+<code>DepthReadAdapter</code> above with <code>d=1024, ins=16</code>;
+seed-1 CUDA-replication checkpoints are in the repository under
+<code>spark_bundle/adapters_ckpt/</code>.)</p>
+<h2
+id="two-measured-design-rules-from-the-papers-failed-predictions">Two
+measured design rules (from the paper's failed predictions)</h2>
+<ol type="1">
+<li><strong>ℓ2-normalize each delta before the key projection</strong>
+(E13) — raw keys are ill-conditioned near the top of the stack;
+normalization holds full-bank κ at 3.0–3.7 on all five models
+tested.</li>
+<li><strong>Initialize every gate at zero — including from-scratch
+builds</strong> (E14): γ₀=1 cost +0.0142 CE on 3/3 seeds; the deficit is
+pure initialization shock.</li>
+</ol>
+<p>Full paper, raw JSONs, and the released harness: <a
+href="https://github.com/adacyb0rg/retro-darc">https://github.com/adacyb0rg/retro-darc</a></p>
+</body>
+</html>
