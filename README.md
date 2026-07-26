@@ -1,8 +1,6 @@
-# retro-darc-site
+# Retro-DARC: Function-Preserving Residual-Memory Adapters for Pretrained Language and World Models
 
-The project page for **Retro-DARC: Function-Preserving Residual-Memory Adapters
-for Pretrained Language and World Models** (Ada Cyborg, July 2026), deployed on
-GitHub Pages.
+Ada Cyborg · July 2026 · project page, deployed on GitHub Pages.
 
 Live: https://adacyb0rg.github.io/retro-darc-site/
 

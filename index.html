@@ -123,6 +123,11 @@ ul.rules li { margin: 6px 0; }
   background: var(--wash); border: 1px solid var(--line); border-radius: 10px;
   padding: 16px 18px; margin-top: 14px;
 }
+.catrow { display: flex; justify-content: flex-end; padding-right: 26px; margin-bottom: -2px; }
+.cat { display: block; color: var(--ink); }
+.cat .tail { transform-origin: 78px 74px; animation: sway 3.4s ease-in-out infinite; }
+@keyframes sway { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(10deg); } }
+@media (prefers-reduced-motion: reduce) { .cat .tail { animation: none; } }
 footer { padding: 34px 0 60px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14.5px; }
 footer a, section a { color: var(--blue); }
 .bibtex { user-select: all; }
@@ -312,6 +317,22 @@ hooked.detach()          <span class="cmt"># base model restored bitwise</span><
   note   = {Technical report; arXiv submission pending}
 }</code></pre>
 </section>
+
+<div class="catrow" title="the lab cat — frozen, like the base model; audits every gain">
+  <svg class="cat" viewBox="0 0 120 84" width="82" height="57" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24 21 L21 7 L33 14"/>
+      <path d="M44 21 L47 7 L35 14"/>
+      <circle cx="34" cy="30" r="14"/>
+      <path d="M27 31 q3 3 6 0"/>
+      <path d="M36 31 q3 3 6 0"/>
+      <path d="M46 38 C 62 42, 74 55, 76 76"/>
+      <path d="M25 43 C 22 55, 22 66, 24 76"/>
+      <path d="M24 76 L76 76"/>
+      <path class="tail" d="M76 74 C 96 78, 106 66, 98 56"/>
+    </g>
+  </svg>
+</div>
 
 <footer>
   <p>Preregistration-style program: predictions and baselines were committed to the public repository before the runs that tested them; four registered predictions failed and are reported verbatim. Raw outputs, harness, per-run records, and the externally timestamped history live in the <a href="https://github.com/adacyb0rg/retro-darc">released repository</a>.</p>
