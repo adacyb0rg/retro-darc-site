@@ -97,7 +97,7 @@ pre {
   padding: 16px 18px; overflow-x: auto; margin: 14px 0;
   font-size: 13.5px; line-height: 1.55;
 }
-code { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; }
+code { font-family: Menlo, Consolas, 'Liberation Mono', ui-monospace, monospace; }
 p code, li code { background: var(--code-bg); border: 1px solid var(--code-line); border-radius: 4px; padding: 1px 5px; font-size: 14px; }
 .cmt { color: var(--muted); }
 .dl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin-top: 18px; }
@@ -141,6 +141,7 @@ ul.rules li { margin: 6px 0; }
 footer { padding: 34px 0 60px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14.5px; }
 footer a, section a { color: var(--blue); }
 .bibtex { user-select: all; }
+.bibtex code { font-family: 'Courier New', Courier, Menlo, monospace; font-size: 14px; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -266,7 +267,7 @@ hooked.detach()          <span class="cmt"># base model restored bitwise</span><
 
 <section>
   <h2 class="sec">Live demo — lucidre.am, the world that remembers</h2>
-  <p>A deployed miniature of the paper's memory contract runs inside <a href="https://lucidre.am/memory">lucidre.am/memory</a> — walkable AI-generated worlds (World Labs Marble) with the paper's mechanisms as the persistence layer:</p>
+  <p>A deployed miniature of the paper's memory contract runs inside <a href="https://lucidre.am/memory">lucidre.am/memory</a> — walkable AI-generated worlds with the paper's mechanisms as the persistence layer:</p>
   <div class="dl-grid">
     <a class="dl" href="https://lucidre.am/memory">
       <div class="t">Innovation memory <span class="arrow">→</span></div>
