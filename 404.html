@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Retro-DARC</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+:root { --ink: #16181d; --muted: #5a5f6b; --paper: #ffffff; --blue: #3565e0; }
+@media (prefers-color-scheme: dark) {
+  :root { --ink: #e8e8e4; --muted: #a2a7b0; --paper: #131417; --blue: #7d9cf0; }
+}
+body {
+  margin: 0; min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 14px;
+  font-family: Charter, Georgia, serif; color: var(--ink); background: var(--paper);
+  text-align: center; padding: 0 20px;
+}
+a { color: var(--blue); }
+.cat { color: var(--ink); }
+.cat .tail { transform-origin: 78px 74px; animation: sway 3.4s ease-in-out infinite; }
+@keyframes sway { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(10deg); } }
+@media (prefers-reduced-motion: reduce) { .cat .tail { animation: none; } }
+</style>
+</head>
+<body>
+  <svg class="cat" viewBox="0 0 120 84" width="120" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24 21 L21 7 L33 14"/>
+      <path d="M44 21 L47 7 L35 14"/>
+      <circle cx="34" cy="30" r="14"/>
+      <path d="M27 31 q3 3 6 0"/>
+      <path d="M36 31 q3 3 6 0"/>
+      <path d="M46 38 C 62 42, 74 55, 76 76"/>
+      <path d="M25 43 C 22 55, 22 66, 24 76"/>
+      <path d="M24 76 L76 76"/>
+      <path class="tail" d="M76 74 C 96 78, 106 66, 98 56"/>
+    </g>
+  </svg>
+  <h1 style="margin:0; font-size:26px;">404 — the null route</h1>
+  <p style="color:var(--muted); max-width:46ch; margin:0;">This address earned no retrieval mass. The lab cat suggests returning to the <a href="./">project page</a> — restoration is exact.</p>
+</body>
+</html>
