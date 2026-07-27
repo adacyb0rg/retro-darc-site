@@ -2,7 +2,7 @@
 
 Ada Cyborg · July 2026 · project page, deployed on GitHub Pages.
 
-Live: https://adacyb0rg.github.io/retro-darc-site/
+Live: https://adacyb0rg.github.io/retro-darc
 
 ## Contents
 
