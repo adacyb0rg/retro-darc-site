@@ -166,6 +166,9 @@ ul.rules li { margin: 6px 0; }
 @media (prefers-reduced-motion: reduce) { .cat .tail { animation: none; } }
 footer { padding: 34px 0 60px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14.5px; }
 footer a, section a { color: var(--blue); }
+.refs { margin-top: 14px; font-size: 13.5px; line-height: 1.5; }
+.refs .ref { margin: 4.5px 0; padding-left: 1.5em; text-indent: -1.5em; }
+.refs .refnote { margin: 12px 0 6px; color: var(--muted); }
 .citebox { position: relative; }
 .copybtn {
   position: absolute; top: 10px; right: 10px; cursor: pointer;
@@ -397,6 +400,114 @@ hooked.detach()          <span class="cmt"># base model restored bitwise</span><
   note   = {Technical report; arXiv submission pending}
 }</code></pre>
 </div>
+</section>
+
+<section>
+  <h2 class="sec">References</h2>
+  <p>All sources cited in the report (100 entries, as listed in its References section). Bracketed keys as cited; post-cutoff industrial systems without archival IDs are cited as dated technical announcements, and vendor-reported numbers are marked as such in the text.</p>
+  <div class="refs">
+<p class="ref"><strong>[He16]</strong> He et al., Deep residual learning, CVPR 2016.</p>
+<p class="ref"><strong>[Vaswani17]</strong> Vaswani et al., Attention is all you need, NeurIPS 2017.</p>
+<p class="ref"><strong>[Ba16]</strong> Ba, Kiros, Hinton, Layer normalization, arXiv:1607.06450.</p>
+<p class="ref"><strong>[LoRA21]</strong> Hu et al., LoRA, arXiv:2106.09685.</p>
+<p class="ref"><strong>[Houlsby19]</strong> Houlsby et al., Parameter-efficient transfer learning, ICML 2019.</p>
+<p class="ref"><strong>[MoD24]</strong> Raposo et al., Mixture-of-Depths, arXiv:2404.02258.</p>
+<p class="ref"><strong>[LayerSkip24]</strong> Elhoushi et al., LayerSkip, arXiv:2404.16710.</p>
+<p class="ref"><strong>[Dehghani18]</strong> Dehghani et al., Universal Transformers, ICLR 2019.</p>
+<p class="ref"><strong>[Geiping25]</strong> Geiping et al., Scaling test-time compute with latent reasoning: a recurrent-depth approach, arXiv:2502.05171.</p>
+<p class="ref"><strong>[MoR25]</strong> Bae et al., Mixture-of-Recursions, arXiv:2507.10524.</p>
+<p class="ref"><strong>[AttnRes26]</strong> Kimi Team, Attention residuals, arXiv:2603.15031.</p>
+<p class="ref"><strong>[DeltaAR26]</strong> Luo, Cai, Hu, Delta attention residuals, arXiv:2605.18855.</p>
+<p class="ref"><strong>[OASIS26]</strong> Luo et al., Attention sinks and outliers in attention residuals, arXiv:2605.17887.</p>
+<p class="ref"><strong>[MoDA26]</strong> Zhu et al., Mixture-of-depths attention, arXiv:2603.15619.</p>
+<p class="ref"><strong>[MUDD25]</strong> Xiao et al., MUDDFormer, arXiv:2502.12170.</p>
+<p class="ref"><strong>[DCA25]</strong> Heddes et al., DeepCrossAttention, ICML 2025.</p>
+<p class="ref"><strong>[DepthAttn26]</strong> Zeng et al., Depth-Attention, arXiv:2606.05014.</p>
+<p class="refnote"><em>Verified against live primary sources, 2026-07-26:</em></p>
+<p class="ref">Dual Attention Residuals, arXiv:2607.18730</p>
+<p class="ref">Multi-Gate Residuals, arXiv:2605.23259</p>
+<p class="ref">Hyper-Connections, arXiv:2409.19606</p>
+<p class="ref">mHC, arXiv:2512.24880</p>
+<p class="ref">DeepSeek-V4, arXiv:2606.19348</p>
+<p class="ref">KromHC, arXiv:2601.21579</p>
+<p class="ref">LAuReL, arXiv:2411.07501</p>
+<p class="ref">FlexiDepth, arXiv:2503.23798</p>
+<p class="ref">Dr.LLM, arXiv:2510.12773</p>
+<p class="ref">GateSkip, arXiv:2510.13876</p>
+<p class="ref">LLaMA-Adapter, arXiv:2303.16199</p>
+<p class="ref">Z. Liu, &quot;When does Kimi&#x27;s Attention Residuals work?&quot;, 2026 (kindxiaoming.github.io)</p>
+<p class="ref">open-attention-residuals (github.com/wdlctc)</p>
+<p class="ref">LongMem, arXiv:2306.07174</p>
+<p class="ref">CAMELoT, arXiv:2402.13449</p>
+<p class="ref">Larimar, arXiv:2403.11901</p>
+<p class="ref">Prometheus Mind, arXiv:2601.15324</p>
+<p class="ref">Trained Persistent Memory, arXiv:2603.22329</p>
+<p class="ref">MemoBench, arXiv:2606.27537</p>
+<p class="ref">MBench, arXiv:2606.00793</p>
+<p class="ref">WorldRoamBench, arXiv:2606.31672</p>
+<p class="ref">On Memory (mechanism comparison), arXiv:2512.06983</p>
+<p class="ref">WorldMem, arXiv:2504.12369</p>
+<p class="ref">Matrix-Game 3.0, arXiv:2604.08995</p>
+<p class="ref">RoboMME, arXiv:2603.04639</p>
+<p class="ref">TempoFit, arXiv:2603.07647</p>
+<p class="ref">HAMLET, arXiv:2510.00695</p>
+<p class="ref">MemoryVLA, arXiv:2508.19236</p>
+<p class="ref">MAP-VLA, arXiv:2511.09516</p>
+<p class="ref">Kimi K3 launch, kimi.com/blog/kimi-k3 (2026-07-16; weights announced 2026-07-27).</p>
+<p class="ref"><strong>[DreamerV3-23]</strong> Hafner et al., Mastering diverse domains through world models, arXiv:2301.04104.</p>
+<p class="ref"><strong>[Dreamer4-25]</strong> Hafner et al., Dreamer 4, 2025.</p>
+<p class="ref"><strong>[VJEPA-24]</strong> Bardes et al., V-JEPA, ICML 2024.</p>
+<p class="ref"><strong>[VJEPA2-25]</strong> Assran et al., V-JEPA 2, arXiv:2506.09985.</p>
+<p class="ref"><strong>[LeJEPA25]</strong> Balestriero &amp; LeCun, LeJEPA: provable and scalable self-supervised learning without the heuristics, arXiv, Nov 2025.</p>
+<p class="ref"><strong>[Klindt26]</strong> Klindt, LeCun, Balestriero, When does LeJEPA learn a world model?, arXiv preprint, May 2026.</p>
+<p class="ref"><strong>[SkyJEPA26]</strong> Rao, Zhang, Balestriero, LeCun, Loianno, SkyJEPA, arXiv:2606.23444.</p>
+<p class="ref"><strong>[CJEPA26]</strong> Causal-JEPA, arXiv:2602.11389.</p>
+<p class="ref"><strong>[LPWM26]</strong> Daniel et al., Latent Particle World Models, ICLR 2026 (oral).</p>
+<p class="ref"><strong>[WAM26]</strong> Wang et al., World action models: the next frontier in embodied AI, arXiv:2605.12090.</p>
+<p class="ref"><strong>[DreamZero26]</strong> Ye et al., World action models are zero-shot policies, arXiv:2602.15922; code github.com/dreamzero0/dreamzero; weights HF GEAR-Dreams.</p>
+<p class="ref"><strong>[EgoScale26]</strong> Zheng et al., EgoScale, arXiv:2602.16710.</p>
+<p class="ref"><strong>[Pi05-25]</strong> Physical Intelligence, π0.5, 2025.</p>
+<p class="ref"><strong>[RDT24]</strong> Liu et al., RDT-1B, arXiv:2410.07864; code thu-ml/RoboticsDiffusionTransformer.</p>
+<p class="ref"><strong>[DSL25]</strong> Lin et al., Data scaling laws in imitation learning, ICLR 2025 (oral).</p>
+<p class="ref"><strong>[DIAL26]</strong> Chen et al., DIAL, arXiv:2603.29844.</p>
+<p class="ref"><strong>[FastWAM26]</strong> Yuan et al., Fast-WAM, arXiv:2603.16666.</p>
+<p class="ref"><strong>[Mu0-26]</strong> Lee, Jung, et al. (Huang &amp; Huang labs, UMD/SNU), μ₀: a scalable 3D interaction-trace world model, arXiv:2606.13769; code github.com/Yoonkyo/mu0; TraceGen arXiv:2511.21690.</p>
+<p class="ref"><strong>[LLaVAOV2-26]</strong> An et al., LLaVA-OneVision-2, arXiv:2605.25979.</p>
+<p class="ref"><strong>[OVE26]</strong> Tang et al., OneVision-Encoder, arXiv:2602.08683.</p>
+<p class="ref"><strong>[Genie3-25]</strong> Google DeepMind, Genie 3: a new frontier for world models, Aug 2025 (deepmind.google); Waymo world-model adoption, Feb 2026.</p>
+<p class="ref"><strong>[Marble25]</strong> World Labs, Marble: a multimodal world model, Nov 2025 (worldlabs.ai).</p>
+<p class="ref"><strong>[Cosmos26]</strong> NVIDIA, Cosmos world foundation models (Cosmos 3, arXiv June 2026).</p>
+<p class="ref"><strong>[AMI26]</strong> AMI Labs, $1.03B seed announcement and JEPA-based world-model program, Mar 2026 (press).</p>
+<p class="ref"><strong>[Manifold26]</strong> Manifold AI (流形空间), WorldScape / WorldScape Policy / geometry-aware world-state memory; WorldScore #1; Pre-A announcement, June 2026 (press).</p>
+<p class="ref"><strong>[MWA26]</strong> 无界动力 &amp; CASIA-DRL, MWA™ long-horizon bidirectional physical-causal-chain latent world model; AnyPhys; RoboCasa GR1 TableTop 75.2%, June 29, 2026 (technical announcement).</p>
+<p class="ref"><strong>[LoopWM26]</strong> Lu, Wei, et al. (FaceMind Research Asia), LoopWM: looped world models, technical report + interview, June 2026.</p>
+<p class="ref"><strong>[Physis26]</strong> Chen, Ji, et al. (逆矩阵/BAAI), 悟界·Physis-v0.1: next physical state prediction, BAAI Conference, June 12, 2026.</p>
+<p class="ref"><strong>[Aether26]</strong> Huang et al. (Aether AI), Causal world models: four-layer causal brain architecture, CVPR 2026 presentation + June 2026 announcements (vendor-reported metrics).</p>
+<p class="ref"><strong>[Momenta26]</strong> Momenta, R7 reinforcement-learning world model (Apr 2026, mass production) and HKEX listing 6880.HK, July 8, 2026.</p>
+<p class="ref"><strong>[LiberAI26]</strong> LiberAI (将闲科技), physical world model via video–physics modality alignment; RDT lineage, 2026 (press/interview).</p>
+<p class="ref"><strong>[KimiK3-26]</strong> Moonshot AI, Kimi K3: a 2.8-trillion-parameter open MoE model with Kimi Delta Attention, Attention Residuals / Block Attention Residuals, Stable LatentMoE (16-of-896 experts), native vision, 1M context, released July 16, 2026 (kimi.com/blog/kimi-k3; weights announced for July 27, 2026; architectural figures from launch materials pending the technical report).</p>
+<p class="ref"><strong>[KimiLinear25]</strong> Kimi Team, Kimi Linear: an expressive, efficient attention architecture (Kimi Delta Attention; 3:1 KDA-to-global hybrid), arXiv:2510.26692.</p>
+<p class="ref"><strong>[MemoBench26]</strong> Chen, Zhou, Hua, Zhang, Qian, Ma, Chen, Liu, Zhao, Wang, Li, Yuille, Liang, Du, MemoBench: benchmarking world modeling in dynamically changing environments, arXiv:2606.27537, ECCV 2026; code github.com/MemoBench-Team/MemoBench.</p>
+<p class="ref"><strong>[MBench26]</strong> Zhang et al., MBench: a comprehensive benchmark on memory capability for video world models, arXiv:2606.00793.</p>
+<p class="ref"><strong>[MIND26]</strong> Ye et al., MIND: benchmarking memory consistency and action control in world models, arXiv:2602.08025.</p>
+<p class="ref"><strong>[OOSOM26]</strong> Ma, Liufu, Gkioxari, Out of sight, out of mind? Evaluating state evolution in video world models, arXiv:2603.13215.</p>
+<p class="ref"><strong>[RynnWorld26]</strong> Zhao, Zhao, Huang, Li, Zhao, Li (Alibaba DAMO Academy et al.), RynnWorld-4D: 4D embodied world models for robotic manipulation, arXiv:2607.06559; code github.com/alibaba-damo-academy/RynnWorld-4D; weights HF Alibaba-DAMO-Academy/RynnWorld-4D.</p>
+<p class="ref"><strong>[LingBot26]</strong> Robbyant (Ant Group), LingBot-World 2.0 / LingBot-World-Infinity: infinite worlds with versatile interactions (MoBA attention mask; DMD over self-rollouts; Pilot/Director agentic harness), arXiv:2607.07534; code github.com/robbyant/lingbot-world-v2, July 2026.</p>
+<p class="ref"><strong>[SelfHarness26]</strong> Shanghai AI Laboratory, Self-Harness: harnesses that improve themselves, arXiv:2606.09498; code github.com/qzzqzzb/Self-Harness.</p>
+<p class="ref"><strong>[GPS26]</strong> Qu, Wang, Mao, Zou, Jiang, Liu, Bai, Yang, Chen, Yang, Ji (Tsinghua × Tencent Hunyuan), Small generalizable prompt predictive models can steer efficient RL post-training of large reasoning models, arXiv:2602.01970 (reported accepted at ICML 2026); code github.com/thu-rllab/GPS.</p>
+<p class="ref"><strong>[MoWorld26]</strong> 魔芯科技 (MoXin Tech) &amp; Zhejiang University, MoWorld: a Flash World Model (14B MoE; ~50 FPS on Ascend NPU; global-anchor + camera-consistency memory), technical report + announcement, July 7, 2026 (moxin-tech.github.io/moworld; press-reported figures).</p>
+<p class="ref"><strong>[SPEAR26]</strong> Ros, Tang, Leutenegger, Sunkavalli, Koltun, et al. (Manycore/群核科技 × Adobe et al.), SPEAR: reflection-based programmable simulation on Unreal Engine, ECCV 2026 (press report, July 2026).</p>
+<p class="ref"><strong>[Meshy26]</strong> Meshy, ~$400M Series B at &gt;¥10B post-money valuation; hybrid world-model game direction, July 20, 2026 (press/founder interview).</p>
+<p class="ref"><strong>[HiDream26]</strong> HiDream.ai (智象未来), UiT native omnimodal architecture and HiDream-O1 model family; ¥1.5B C round (cumulative &gt;¥2.1B across three rounds), July 2026 (press).</p>
+<p class="ref"><strong>[Tashi26]</strong> 它石智航 (Tashi/TARS), $455M Pre-A (April 2026, reported record for China embodied AI) and AWE world-model end-to-end training (press).</p>
+<p class="ref"><strong>[FastLeWM26]</strong> Gao, Xu (XJTU), Fast LeWorldModel: action-prefix parallel prediction for latent planning, arXiv:2606.26217; code github.com/Yuntian-Gao/Fast-LeWorldModel; page fast-lewm.github.io.</p>
+<p class="ref"><strong>[LeWM26]</strong> Maes, Le Lidec, Scieur, LeCun, Balestriero, LeWorldModel: stable end-to-end JEPA from pixels, arXiv:2603.19312; code github.com/lucas-maes/le-wm (HF checkpoints).</p>
+<p class="ref"><strong>[LingBotVideo26]</strong> Robbyant (Ant Group), LingBot-Video: an embodied MoE video foundation model (30B-A3B; hierarchical physics-graded RL reward; action-to-video), arXiv:2607.07675; code github.com/robbyant/lingbot-video.</p>
+<p class="ref"><strong>[Reverie26]</strong> Reverie, Interaction Model R v0.2: adaptive streaming interaction with world-state estimation and long-term memory (founder interview + product materials, July 2026).</p>
+<p class="ref"><strong>[SageAttn25]</strong> Zhang et al. (Tsinghua/ShengShu line), SageAttention / TurboDiffusion / Sparse Linear Attention: low-bit and sparse attention kernels and step-distillation for compute-bound multimodal inference (open-source project family; interview, July 2026).</p>
+<p class="ref"><strong>[Kalman60]</strong> Kalman, A new approach to linear filtering and prediction problems, J. Basic Eng. 1960.</p>
+<p class="ref"><strong>[Kailath68]</strong> Kailath, An innovations approach to least-squares estimation, IEEE TAC 1968.</p>
+  </div>
 </section>
 
 <div class="catrow" title="the lab cat — frozen, like the base model; audits every gain">
