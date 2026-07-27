@@ -43,15 +43,7 @@ body {
   font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
   color: var(--muted);
 }
-header.hero { text-align: center; padding: 72px 0 30px; position: relative; }
-.herocat {
-  position: absolute; top: -20px; right: -8px; width: 96px; height: auto;
-  filter: brightness(1.04); mix-blend-mode: multiply; pointer-events: none;
-}
-@media (prefers-color-scheme: dark) {
-  .herocat { display: none; }
-}
-@media (max-width: 940px) { .herocat { display: none; } }
+header.hero { text-align: center; padding: 72px 0 30px; }
 h1.title {
   font-size: clamp(28px, 4.6vw, 42px); line-height: 1.16;
   text-wrap: balance; margin: 14px 0 10px; letter-spacing: -0.012em;
@@ -180,7 +172,6 @@ footer a, section a { color: var(--blue); }
 <div class="wrap">
 
 <header class="hero">
-  <video class="herocat" autoplay loop muted playsinline src="videos/green-cat.mp4"></video>
   <div class="eyebrow">Measured on public checkpoints · replicated across accelerators · July 2026</div>
   <h1 class="title">Retro-DARC: Function-Preserving Residual-Memory Adapters for Pretrained Language and World Models</h1>
   <p class="subtitle">Queryable residual evidence for planners — from layer deltas to traces, latent actions, and physics residuals</p>
