@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retro-darc"
+version = "1.0.0"
+description = "Retro-DARC: function-preserving residual-memory adapters for pretrained causal LMs (bitwise-identity insertion, causal memory audits)"
+readme = "ADAPTER_QUICKSTART.md"
+license = { text = "CC-BY-4.0" }
+authors = [{ name = "Ada Cyborg" }]
+requires-python = ">=3.9"
+dependencies = ["torch>=2.0", "transformers>=4.40"]
+
+[project.urls]
+Homepage = "https://adacyb0rg.github.io/retro-darc/"
+Repository = "https://github.com/adacyb0rg/retro-darc"
+
+[tool.setuptools]
+py-modules = ["depth_adapter"]
