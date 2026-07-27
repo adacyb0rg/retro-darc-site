@@ -146,6 +146,19 @@ ul.rules li { margin: 6px 0; }
 .demo .t a:hover { color: var(--blue); }
 .demo .t .arrow { color: var(--blue); }
 .demo .d { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.45; }
+.demo-sec { position: relative; }
+.demo-sec h2.sec, .demo-sec > p { padding-right: 130px; }
+@media (max-width: 760px) { .demo-sec h2.sec, .demo-sec > p { padding-right: 0; } }
+.greencat {
+  position: absolute; top: 8px; right: 6px; width: 106px; height: auto;
+  pointer-events: none; animation: catbob 4.5s ease-in-out infinite;
+}
+@keyframes catbob {
+  0%, 100% { transform: translateY(0) rotate(-2.5deg); }
+  50% { transform: translateY(-9px) rotate(2.5deg); }
+}
+@media (prefers-reduced-motion: reduce) { .greencat { animation: none; } }
+@media (max-width: 760px) { .greencat { display: none; } }
 .catrow { display: flex; justify-content: flex-end; padding-right: 26px; margin-bottom: -2px; }
 .cat { display: block; color: var(--ink); }
 .cat .tail { transform-origin: 78px 74px; animation: sway 3.4s ease-in-out infinite; }
@@ -285,7 +298,8 @@ hooked.detach()          <span class="cmt"># base model restored bitwise</span><
   </div>
 </section>
 
-<section>
+<section class="demo-sec">
+  <img class="greencat" src="cat-green.png" alt="">
   <h2 class="sec">Live demo — lucidre.am, the world that remembers</h2>
   <p>A deployed miniature of the paper's memory contract runs inside <a href="https://lucidre.am/memory">lucidre.am/memory</a> — walkable AI-generated worlds with the paper's mechanisms as the persistence layer:</p>
   <div class="demo-grid">
