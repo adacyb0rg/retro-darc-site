@@ -13,6 +13,8 @@ Live: https://adacyb0rg.github.io/retro-darc-site/
 - `retro-darc-adapter-kit.zip` — depth_adapter.py + trained pythia-410m adapter
   checkpoints + quickstart guide (2 MB)
 - `figures/` — the paper's vector figures
+- `prior/` — the May–June 2026 manuscript iterations (June 6 and June 12), preserved as released
+- `videos/` — demo loops (placeholders until the recordings land)
 - `favicon.svg` · `og-card.png` (`gen_og_card.py`) · `404.html` — site chrome
 
 License: CC BY 4.0 (see `LICENSE`).
