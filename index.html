@@ -43,7 +43,15 @@ body {
   font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
   color: var(--muted);
 }
-header.hero { text-align: center; padding: 72px 0 30px; }
+header.hero { text-align: center; padding: 72px 0 30px; position: relative; }
+.herocat {
+  position: absolute; top: -20px; right: -8px; width: 96px; height: auto;
+  mix-blend-mode: multiply; pointer-events: none;
+}
+@media (prefers-color-scheme: dark) {
+  .herocat { mix-blend-mode: normal; border-radius: 14px; }
+}
+@media (max-width: 940px) { .herocat { display: none; } }
 h1.title {
   font-size: clamp(28px, 4.6vw, 42px); line-height: 1.16;
   text-wrap: balance; margin: 14px 0 10px; letter-spacing: -0.012em;
@@ -146,19 +154,6 @@ ul.rules li { margin: 6px 0; }
 .demo .t a:hover { color: var(--blue); }
 .demo .t .arrow { color: var(--blue); }
 .demo .d { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.45; }
-.demo-sec { position: relative; }
-.demo-sec h2.sec, .demo-sec > p { padding-right: 130px; }
-@media (max-width: 760px) { .demo-sec h2.sec, .demo-sec > p { padding-right: 0; } }
-.greencat {
-  position: absolute; top: 8px; right: 6px; width: 106px; height: auto;
-  pointer-events: none; animation: catbob 4.5s ease-in-out infinite;
-}
-@keyframes catbob {
-  0%, 100% { transform: translateY(0) rotate(-2.5deg); }
-  50% { transform: translateY(-9px) rotate(2.5deg); }
-}
-@media (prefers-reduced-motion: reduce) { .greencat { animation: none; } }
-@media (max-width: 760px) { .greencat { display: none; } }
 .catrow { display: flex; justify-content: flex-end; padding-right: 26px; margin-bottom: -2px; }
 .cat { display: block; color: var(--ink); }
 .cat .tail { transform-origin: 78px 74px; animation: sway 3.4s ease-in-out infinite; }
@@ -185,6 +180,7 @@ footer a, section a { color: var(--blue); }
 <div class="wrap">
 
 <header class="hero">
+  <video class="herocat" autoplay loop muted playsinline src="videos/green-cat.mp4"></video>
   <div class="eyebrow">Measured on public checkpoints · replicated across accelerators · July 2026</div>
   <h1 class="title">Retro-DARC: Function-Preserving Residual-Memory Adapters for Pretrained Language and World Models</h1>
   <p class="subtitle">Queryable residual evidence for planners — from layer deltas to traces, latent actions, and physics residuals</p>
@@ -301,8 +297,7 @@ hooked.detach()          <span class="cmt"># base model restored bitwise</span><
   </div>
 </section>
 
-<section class="demo-sec">
-  <img class="greencat" src="cat-green.png" alt="">
+<section>
   <h2 class="sec">Live demo — lucidre.am, the world that remembers</h2>
   <p>A deployed miniature of the paper's memory contract runs inside <a href="https://lucidre.am/memory">lucidre.am/memory</a> — walkable AI-generated worlds with the paper's mechanisms as the persistence layer:</p>
   <div class="demo-grid">
