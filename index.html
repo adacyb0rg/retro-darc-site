@@ -279,6 +279,11 @@ hooked.detach()          <span class="cmt"># base model restored bitwise</span><
     </a>
   </div>
 
+  <div class="callout" style="border-left-color: var(--purple); margin-top:22px">
+    <span class="h">Why the paper matters here.</span>
+    Lucidream's constraint <em>is</em> the paper's problem statement: worlds come from an external generator the platform cannot retrain — a frozen base. The paper proves memory can be attached around a frozen system as an <strong>exact no-op</strong>, so "worlds that remember" is a safe promise, not a mutation: the pristine world is always recoverable, exactly. Second, memory earns trust only if it is <strong>auditable</strong> — the paper's zero / shuffle / same-norm interventions give a machine-checkable answer to "what did memory change?", which on a platform becomes the ownership and moderation story: a visitor's layer is theirs — inspectable, removable, provably separable from the world itself. Third, the demo's mechanisms are not ad-hoc: Softmax1 null routing, delta keys, zero-gated reads, and per-slot key normalization are the paper's <em>measured</em> configuration, so every roadmap feature below inherits evidence rather than guesses. And the stakes are external: the 2026 memory-benchmark cluster measured that leading generative world models cannot hold a changed object in mind through occlusion — explicit, queryable memory is precisely the capability a "worlds with history" platform must own.
+  </div>
+
   <p style="margin-top:22px"><strong>Roadmap — the platform as the paper's deployment surface.</strong> Each next feature is a paper mechanism deployed:</p>
   <ol style="margin: 10px 0 0 22px; font-size: 16px;">
     <li style="margin:7px 0"><strong>Shared persistent worlds</strong> (§13.2(7) belief-state design) — move the bank server-side and worlds remember <em>everyone</em>. The paper's keying gives attribution for free: each innovation carries its author's context key, so "whose edit is this" is queryable, and per-visitor γ gates let a visitor view the pristine world, their own layer, or the communal dream — worlds with history, not just geometry.</li>

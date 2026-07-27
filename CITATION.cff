@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Retro-DARC: Function-Preserving Residual-Memory Adapters for Pretrained Language and World Models"
+authors:
+  - family-names: "Cyborg"
+    given-names: "Ada"
+date-released: 2026-07-26
+version: "1.0"
+url: "https://adacyb0rg.github.io/retro-darc-site/"
+repository-code: "https://github.com/adacyb0rg/retro-darc"
+license: "CC-BY-4.0"
+keywords:
+  - depth memory
+  - attention residuals
+  - parameter-efficient finetuning
+  - function-preserving adapters
+  - world models
+  - causal interventions
+preferred-citation:
+  type: article
+  title: "Retro-DARC: Function-Preserving Residual-Memory Adapters for Pretrained Language and World Models"
+  authors:
+    - family-names: "Cyborg"
+      given-names: "Ada"
+  year: 2026
+  month: 7
+  notes: "arXiv identifier to be added on submission"
