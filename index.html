@@ -133,6 +133,19 @@ ul.rules li { margin: 6px 0; }
   background: var(--wash); border: 1px solid var(--line); border-radius: 10px;
   padding: 16px 18px; margin-top: 14px;
 }
+.demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
+@media (max-width: 700px) { .demo-grid { grid-template-columns: 1fr; } }
+.demo {
+  margin: 0; background: var(--wash); border: 1px solid var(--line);
+  border-radius: 10px; overflow: hidden; display: flex; flex-direction: column;
+}
+.demo video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #16181d; }
+.demo figcaption { padding: 14px 18px 16px; }
+.demo .t { font-weight: 700; font-size: 16.5px; }
+.demo .t a { color: var(--ink); text-decoration: none; }
+.demo .t a:hover { color: var(--blue); }
+.demo .t .arrow { color: var(--blue); }
+.demo .d { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.45; }
 .catrow { display: flex; justify-content: flex-end; padding-right: 26px; margin-bottom: -2px; }
 .cat { display: block; color: var(--ink); }
 .cat .tail { transform-origin: 78px 74px; animation: sway 3.4s ease-in-out infinite; }
@@ -268,17 +281,28 @@ hooked.detach()          <span class="cmt"># base model restored bitwise</span><
 <section>
   <h2 class="sec">Live demo — lucidre.am, the world that remembers</h2>
   <p>A deployed miniature of the paper's memory contract runs inside <a href="https://lucidre.am/memory">lucidre.am/memory</a> — walkable AI-generated worlds with the paper's mechanisms as the persistence layer:</p>
-  <div class="dl-grid">
-    <a class="dl" href="https://lucidre.am/memory">
-      <div class="t">Innovation memory <span class="arrow">→</span></div>
-      <div class="d">Your interactions become innovation records — keyed, Softmax1-routed, re-read on your next visit through a zero-gated redream, with the paper's interventions available live.</div><div class="d" style="margin-top:7px"><strong>Enables:</strong> truly interactive worlds that accumulate consequence — persistent state without save files, spaces that remember what you did, player-driven world evolution — with an off-switch that provably restores the original.</div>
-    </a>
-    <a class="dl" href="https://lucidre.am/memory">
-      <div class="t">Dream residue — trace memory <span class="arrow">→</span></div>
-      <div class="d">A visitor's camera path is a literal innovation trace — motion deltas over the world (X-Trace, paper §7), banked and re-rendered as faint glowing trails on revisit.</div><div class="d" style="margin-top:7px"><strong>Enables:</strong> user paths as a first-class asset — ghost trails and asynchronous presence (racing ghosts, Souls-style traces of other travellers), attention heatmaps for level and world design, and auto-tour cameras built from where people actually go.</div>
-    </a>
+  <div class="demo-grid">
+    <figure class="demo">
+      <video autoplay loop muted playsinline poster="videos/memory-poster.png">
+        <source src="videos/memory.mp4" type="video/mp4">
+      </video>
+      <figcaption>
+        <div class="t"><a href="https://lucidre.am/memory">Innovation memory <span class="arrow">→</span></a></div>
+        <div class="d">Your interactions become innovation records — keyed, Softmax1-routed, re-read on your next visit through a zero-gated redream, with the paper's interventions available live.</div>
+        <div class="d"><strong>Enables:</strong> truly interactive worlds that accumulate consequence — persistent state without save files, spaces that remember what you did, player-driven world evolution — with an off-switch that provably restores the original.</div>
+      </figcaption>
+    </figure>
+    <figure class="demo">
+      <video autoplay loop muted playsinline poster="videos/residue-poster.png">
+        <source src="videos/residue.mp4" type="video/mp4">
+      </video>
+      <figcaption>
+        <div class="t"><a href="https://lucidre.am/memory">Dream residue — trace memory <span class="arrow">→</span></a></div>
+        <div class="d">A visitor's camera path is a literal innovation trace — motion deltas over the world (X-Trace, paper §7), banked and re-rendered as faint glowing trails on revisit.</div>
+        <div class="d"><strong>Enables:</strong> user paths as a first-class asset — ghost trails and asynchronous presence (racing ghosts, Souls-style traces of other travellers), attention heatmaps for level and world design, and auto-tour cameras built from where people actually go.</div>
+      </figcaption>
+    </figure>
   </div>
-
   <div class="callout" style="border-left-color: var(--purple); margin-top:22px">
     <span class="h">Why the paper matters here.</span>
     Lucidream's constraint <em>is</em> the paper's problem statement: worlds come from an external generator the platform cannot retrain — a frozen base. The paper proves memory can be attached around a frozen system as an <strong>exact no-op</strong>, so "worlds that remember" is a safe promise, not a mutation: the pristine world is always recoverable, exactly. Second, memory earns trust only if it is <strong>auditable</strong> — the paper's zero / shuffle / same-norm interventions give a machine-checkable answer to "what did memory change?", which on a platform becomes the ownership and moderation story: a visitor's layer is theirs — inspectable, removable, provably separable from the world itself. Third, the demo's mechanisms are not ad-hoc: Softmax1 null routing, delta keys, zero-gated reads, and per-slot key normalization are the paper's <em>measured</em> configuration, so every roadmap feature below inherits evidence rather than guesses. And the stakes are external: the 2026 memory-benchmark cluster measured that leading generative world models cannot hold a changed object in mind through occlusion — explicit, queryable memory is precisely the capability a "worlds with history" platform must own.
